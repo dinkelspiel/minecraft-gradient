@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Minecraft Gradient Picker</title>
+    <link rel="stylesheet" href="minecraft-gradient/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+    <div class="card m-5 pb-5">
+        <div class="card-header">
+            Minecraft Gradient
+        </div>
+        <div class="card-body">
+            <div class="gradient mx-auto rounded pb-5" id="gradient" style="background: linear-gradient(to right, #3494E6 0.5%, #333333 53.31%, #986a44 55.02%, #333333 77.88%, #EC6EAD 99%)">
+            </div>
+            <div id="control-points">
+            </div>
+
+            <ul class="list-group mt-3" id="color-list">
+            </ul>
+            <button class="btn btn-primary mt-3" onclick="
+                gradient = document.getElementById('gradient')
+
+                var index = undefined
+                controlPoints.forEach((point, i) => {
+                    if(point.x > 0.5 && index == undefined)
+                    {
+                        index = i
+                    }
+                })
+
+                controlPoints.splice(index, 0, new ControlPoint(
+                    0.5,
+                    new Color(255, 255, 255, 255)
+                ))
+
+                generatePointsHTML()
+                generateCSSGradient()
+                generateMinecraftBlocks()
+            ">Add Point</button>
+
+            <div class="d-flex" style="gap: 10px">
+                <div class="input-group my-3">
+                    <span class="input-group-text">Number of blocks</span>
+                    <input type="number" class="form-control" id="numitems" placeholder="Number of blocks" value="10" onchange="var a = parseInt(event.target.value); if(!isNaN(a)) {numItems = a} else {numItems = 10; document.getElementById('numitems').value = 10}; generateMinecraftBlocks()">
+                </div>
+
+                <div class="input-group my-3">
+                    <span class="input-group-text">Width</span>
+                    <input type="number" class="form-control" id="widthitems" placeholder="Width of blocks" value="1" onchange="var a = parseInt(event.target.value); if(!isNaN(a)) {widthItems = a} else {widthItems = 1; document.getElementById('widthitems').value = 1}; generateMinecraftBlocks()">
+                </div>
+
+                <div class="input-group my-3">
+                    <span class="input-group-text">Offset</span>
+                    <input type="number" class="form-control" id="offsetitems" placeholder="Random offset for blocks" value="0" onchange="var a = parseFloat(event.target.value); if(!isNaN(a)) {offsetItems = a} else {offsetItems = 0; document.getElementById('offsetitems').value = 0}; generateMinecraftBlocks()">
+                </div>
+            </div>    
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked value="true" onclick="onlySolids = this.checked; console.log(onlySolids); generateMinecraftBlocks()">
+                <label class="form-check-label" style="width: 100px" for="flexSwitchCheckChecked">Only solids</label>
+            </div>                  
+            
+            <div id="minecraft-group" class="d-flex">
+    
+            </div>
+        </div>
+        <div class="card-footer">
+            
+        </div>
+    </div>
+    <script src="minecraft-gradient/block.js"></script> 
+    <script src="minecraft-gradient/script.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+.gradient {
+    width: 100%;
+    height: 100px;
+    background-color: gray;
+}
+
+@media screen and (max-width: 992px) {
+    body {
+      background-color: blue;
+    }
+}
+
+.point {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    /* position: absolute; */
+    background-image: url("./marker.svg");
+    background-size: cover;
+    transform: rotate(180deg);
+}
+
+.list-color {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--bs-border-radius);
+}
+
+.minecraft-block {
+    width: 32px;
+    height: 32px;
+}
